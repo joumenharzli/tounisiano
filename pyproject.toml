@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "tounisiano"
+version = "0.1.0"
+description = "AI Assistant that speaks Tunisian dialect"
+authors = ["Joumen HARZLI"]
+license = "Apache-2.0 license"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+requests = "^2.31.0"
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.11.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
