@@ -2,12 +2,13 @@
 Copyright (c) 2023 Joumen HARZLI
 """
 
-from abc import ABC, abstractmethod
-from tounisiano.datasets.models import QA, Conversation, Dataset
-from dataclasses import asdict
-from tounisiano.utils import utils
 import json
 import os
+from abc import ABC, abstractmethod
+from dataclasses import asdict
+
+from tounisiano.datasets.models import QA, Conversation, Dataset
+from tounisiano.utils import utils
 
 
 class AbstractDataset(ABC):
@@ -49,5 +50,5 @@ class AbstractDataset(ABC):
         json_data = json.dumps(dataset_dict, indent=2, ensure_ascii=False)
         output_directory = os.path.dirname(output_path)
         os.makedirs(output_directory, exist_ok=True)
-        with open(output_path, "w") as json_file:
+        with open(output_path, "w", encoding="utf-8") as json_file:
             json_file.write(json_data)

@@ -4,9 +4,11 @@ Copyright (c) 2023 Joumen HARZLI
 
 from importlib import import_module
 from typing import Dict, Type
+
+import pandas as pd
+
 from tounisiano.config import Config
 from tounisiano.datasets import AbstractDataset, DatasetFormatter
-import pandas as pd
 
 
 class GenerateDatasetTask:

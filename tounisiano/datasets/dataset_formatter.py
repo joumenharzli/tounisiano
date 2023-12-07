@@ -2,11 +2,9 @@
 Copyright (c) 2023 Joumen HARZLI
 """
 
-from typing import List
-from tounisiano.datasets import Dataset
 import pandas as pd
 
-from tounisiano.datasets import QA, Conversation
+from tounisiano.datasets.models import QA, Conversation, Dataset
 
 
 class DatasetFormatter:

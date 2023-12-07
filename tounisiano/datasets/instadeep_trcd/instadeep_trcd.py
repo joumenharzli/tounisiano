@@ -4,7 +4,8 @@ Copyright (c) 2023 Joumen HARZLI
 
 import json
 from typing import List
-from tounisiano.datasets import Dataset, QA, Conversation, AbstractDataset
+
+from tounisiano.datasets import QA, AbstractDataset, Conversation, Dataset
 from tounisiano.utils import utils
 
 DATASETS_URLS = [
@@ -17,9 +18,6 @@ CATEGORY = "LAW_AND_GOV"
 
 
 class InstadeepTRCD(AbstractDataset):
-    def __init__(self) -> None:
-        super().__init__()
-
     def do_generate(self) -> Dataset:
         dataset = Dataset(conversations=[], category=CATEGORY)
         for dataset_url in DATASETS_URLS:
