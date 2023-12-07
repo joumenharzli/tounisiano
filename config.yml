@@ -1,0 +1,6 @@
+datasets_output_dir: dist/datasets/
+datasets:
+  - tounisiano.datasets.instadeep_trcd
+
+system_prompt: "<|im_start|>system\nإنتي مساعد ذكي تفهم و تحكي باللغة العربية و باللهجة التونسية كان تعرف تجاوب على سؤال جاوب وكان متعرفش تجاوب قول منعرفش و كان مفهمتش قول مفهمتش\n<|im_end|>\n"
+qa_prompt_format: "<|im_start|>user\n{user}\n<|im_end|>\n<|im_start|>assistant\n{assistant}\n<|im_end|>\n"
