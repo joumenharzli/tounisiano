@@ -18,7 +18,7 @@ class GenerateDatasetTask:
             system_prompt=config.system_prompt, qa_prompt_format=config.qa_prompt_format
         )
 
-    def execute(self, dataset_output_file: str):
+    def execute(self):
         datasets_dfs = []
 
         for dataset_name in self.config.datasets:
@@ -32,8 +32,7 @@ class GenerateDatasetTask:
                     datasets_dfs.append(dataset_df)
 
         result_df = pd.concat(datasets_dfs)
-        result_df.to_parquet(dataset_output_file, compression="gzip")
-        # print(result_df.head(1)["text"].values[0])
+        result_df.to_parquet(self.config.merged_dataset_output_path, compression="gzip")
 
     @staticmethod
     def import_and_register_all_classes(

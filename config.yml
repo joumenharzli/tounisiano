@@ -1,6 +1,35 @@
 datasets_output_dir: dist/datasets/
+merged_dataset_output_path: dist/datasets/dataset.parquet.gzip
 datasets:
   - tounisiano.datasets.instadeep_trcd
 
-system_prompt: "<|im_start|>system\nإنتي مساعد ذكي تفهم و تحكي باللغة العربية و باللهجة التونسية كان تعرف تجاوب على سؤال جاوب وكان متعرفش تجاوب قول منعرفش و كان مفهمتش قول مفهمتش\n<|im_end|>\n"
-qa_prompt_format: "<|im_start|>user\n{user}\n<|im_end|>\n<|im_start|>assistant\n{assistant}\n<|im_end|>\n"
+# ChatML format
+system_prompt: "<|im_start|>system\nإنتي مساعد ذكي تفهم و تحكي باللغة العربية و باللهجة التونسية كان تعرف تجاوب على سؤال جاوب وكان متعرفش تجاوب قول منعرفش و كان مفهمتش قول مفهمتش<|im_end|>\n"
+qa_prompt_format: "<|im_start|>user\n{user}<|im_end|>\n<|im_start|>assistant\n{assistant}<|im_end|>\n"
+
+training:
+  outputs_dir: "dist/training/"
+  base_model: "mistralai/Mistral-7B-v0.1"
+  max_seq_length: 512
+  eos_token: "<|im_end|>"
+  new_tokens:
+    - "<|im_start|>"
+
+  epochs: 3
+  batch_size: 10
+  learning_rate: 0.0002 # use the default learning rate suggested by the QLoRA authors
+
+  lora:
+    # Default QLoRA params
+    rate: 64
+    alpha: 16
+    dropout: 0.1
+    # Mistral Modules
+    target_modules:
+      - "q_proj"
+      - "k_proj"
+      - "down_proj"
+      - "v_proj"
+      - "gate_proj"
+      - "o_proj"
+      - "up_proj"

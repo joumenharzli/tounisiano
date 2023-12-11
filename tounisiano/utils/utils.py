@@ -8,6 +8,10 @@ import tempfile
 import requests
 
 
+def create_dir(output_directory: str):
+    os.makedirs(output_directory, exist_ok=True)
+
+
 def file_exists(file_path):
     return os.path.exists(file_path)
 
