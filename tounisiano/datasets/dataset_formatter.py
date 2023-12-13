@@ -4,7 +4,7 @@ Copyright (c) 2023 Joumen HARZLI
 
 import pandas as pd
 
-from tounisiano.datasets.models import QA, Conversation, Dataset
+from .models import QA, Conversation, Dataset
 
 
 class DatasetFormatter:

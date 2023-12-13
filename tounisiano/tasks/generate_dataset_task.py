@@ -8,7 +8,7 @@ from typing import Dict, Type
 import pandas as pd
 
 from tounisiano.config import Config
-from tounisiano.datasets import AbstractDataset, DatasetFormatter
+from tounisiano.datasets import BaseDataset, DatasetFormatter
 
 
 class GenerateDatasetTask:
@@ -37,13 +37,13 @@ class GenerateDatasetTask:
     @staticmethod
     def import_and_register_all_classes(
         module_name: str,
-    ) -> Dict[str, Type[AbstractDataset]]:
+    ) -> Dict[str, Type[BaseDataset]]:
         registered_classes = {}
         try:
             my_module = import_module(module_name)
             for name in dir(my_module):
                 obj = getattr(my_module, name)
-                if isinstance(obj, type) and issubclass(obj, AbstractDataset):
+                if isinstance(obj, type) and issubclass(obj, BaseDataset):
                     registered_classes[obj.__name__] = obj
             return registered_classes
         except ModuleNotFoundError as e:

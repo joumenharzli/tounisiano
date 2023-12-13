@@ -1,2 +1,8 @@
-from tounisiano.tasks.generate_dataset_task import GenerateDatasetTask
-from tounisiano.tasks.train_task import TrainTask
+"""
+Copyright (c) 2023 Joumen HARZLI
+"""
+
+from .generate_dataset_task import GenerateDatasetTask
+from .train_task import TrainTask
+
+__all__ = ["GenerateDatasetTask", "TrainTask"]

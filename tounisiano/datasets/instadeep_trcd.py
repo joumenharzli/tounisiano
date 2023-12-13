@@ -5,8 +5,10 @@ Copyright (c) 2023 Joumen HARZLI
 import json
 from typing import List
 
-from tounisiano.datasets import QA, AbstractDataset, Conversation, Dataset
-from tounisiano.utils import utils
+from tounisiano import utils
+
+from .base import BaseDataset
+from .models import QA, Conversation, Dataset
 
 DATASETS_URLS = [
     "https://storage.googleapis.com/ext-oss-tunbert-gcp/TRCD_dataset/TRCD_train.json",
@@ -17,7 +19,7 @@ DATASETS_URLS = [
 CATEGORY = "LAW_AND_GOV"
 
 
-class InstadeepTRCD(AbstractDataset):
+class InstadeepTRCD(BaseDataset):
     def do_generate(self) -> Dataset:
         dataset = Dataset(conversations=[], category=CATEGORY)
         for dataset_url in DATASETS_URLS:

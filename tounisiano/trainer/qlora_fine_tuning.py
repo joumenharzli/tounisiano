@@ -4,30 +4,22 @@ Copyright (c) 2023 Joumen HARZLI
 
 import torch
 from datasets import load_dataset
-from peft import (
-    AutoPeftModelForCausalLM,
-    LoraConfig,
-    TaskType,
-    get_peft_model,
-    prepare_model_for_kbit_training,
-)
-from transformers import (
-    AutoModelForCausalLM,
-    AutoTokenizer,
-    BitsAndBytesConfig,
-    TrainingArguments,
-)
+from peft import (AutoPeftModelForCausalLM, LoraConfig, TaskType,
+                  get_peft_model, prepare_model_for_kbit_training)
+from transformers import (AutoModelForCausalLM, AutoTokenizer,
+                          BitsAndBytesConfig, TrainingArguments)
 from trl import SFTTrainer
 
-from tounisiano.trainer.abstract_trainer import AbstractTrainer
-from tounisiano.trainer.models import TrainingParameters
-from tounisiano.utils import utils
+from tounisiano import utils
+
+from .base import BaseTrainer
+from .models import TrainingParameters
 
 # merged_dataset_output_path="dist/datasets/dataset.parquet.gzip"
 # TrainingParameters(base_model='mistralai/Mistral-7B-v0.1', outputs_dir='dist/training/', eos_token='<|im_end|>', new_tokens=['<|im_start|>'], max_seq_length=512, lora=LoRAFineTuningParameters(rate=64, alpha=16, dropout=0.1, target_modules=['q_proj', 'k_proj', 'down_proj', 'v_proj', 'gate_proj', 'o_proj', 'up_proj']), epochs=3, batch_size=10, learning_rate=0.0002)
 
 
-class QLoRAFineTuning(AbstractTrainer):
+class QLoRAFineTuning(BaseTrainer):
     def train(self, merged_dataset_output_path: str, params: TrainingParameters):
         torch.set_default_device("cuda")
         utils.create_dir(params.outputs_dir)

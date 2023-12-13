@@ -7,11 +7,12 @@ import os
 from abc import ABC, abstractmethod
 from dataclasses import asdict
 
-from tounisiano.datasets.models import QA, Conversation, Dataset
-from tounisiano.utils import utils
+from tounisiano import utils
+
+from .models import QA, Conversation, Dataset
 
 
-class AbstractDataset(ABC):
+class BaseDataset(ABC):
     @abstractmethod
     def do_generate(self) -> Dataset:
         pass

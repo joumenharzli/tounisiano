@@ -6,14 +6,13 @@ from dataclasses import dataclass, field
 from typing import List
 
 import yaml
-from dataclasses_json import Undefined, dataclass_json
+from dataclasses_json import DataClassJsonMixin
 
-from tounisiano.trainer.models import TrainingParameters
+from tounisiano.trainer import TrainingParameters
 
 
-@dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclass
-class Config:
+class Config(DataClassJsonMixin):
     datasets_output_dir: str = ""
     merged_dataset_output_path: str = ""
     datasets: List[str] = field(default_factory=list)
